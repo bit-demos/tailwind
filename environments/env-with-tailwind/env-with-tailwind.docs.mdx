@@ -1,0 +1,33 @@
+---
+description: 'An example react environment with tailwind webpack transformers added'
+labels: ['react', 'env', 'tailwind', 'example']
+---
+
+## Overview
+
+A customized react environment, with tailwind support added via a webpack config component.
+
+### Usage instructions
+
+Under the **variant** section of your `workspace.json` file choose which components you want to have the custom environment set. You can find the id of the extension in the `env-with-tailwind.aspect.ts` file.
+
+```json
+{
+  "teambit.workspace/variants": {
+    "{ui/**}, {pages/**}": {
+      "learn-bit-react.ui-library-wrappers/tailwind/environments/env-with-tailwind": {}
+    }
+  }
+}
+```
+
+## Runtime Configurations
+
+The tailwind configuration has been added to this env's webpack config via the [template webpack transformer component](https://bit.dev/learn-bit-react/ui-library-wrappers/tailwind/configs/transformers). This component returns a pair of transformers
+that configure webpack for `tailwind` support.
+
+## Preview Configurations
+
+Tailwind styles have been added to the `.preview.runtime.ts` file in order to simulate the styles configuration from a consuming app in component compositions.
+
+

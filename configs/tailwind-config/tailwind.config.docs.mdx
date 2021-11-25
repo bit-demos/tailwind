@@ -1,0 +1,48 @@
+---
+labels: ['tailwind', 'config', 'shareable', 'component']
+description: 'Shareable Tailwind config and styles, for style standardisation'
+---
+
+# Overview
+
+This Tailwind config component contains both tailwind.config.js and style.css files, for fully defining and configuring tailwind for your project.
+
+These configs can then be used in conjunction with a bit environment, for development of tailwind-styled components using bit's full feature set, or as a standalone - and standardised - configuration to be 
+used in app-level tailwind configs across the organisation.
+
+## Use in a Bit env
+
+To configure Tailwind for a Bit env, you must apply a config to the env's postCss webpack config, which will run the Tailwind post-processor on components using that env.
+
+This can be done via the `transformers` component in this scope, which takes in a path to a tailwind.config.js file and implements the required webpack transform to add Tailwind. 
+
+After configuring the tailwind config, you then just need to import the styles.css file from this component into the env's `preview.runtime` file, like you would any tailwind-ready app, 
+in order to make the required tailwind styles available to components using that env. 
+
+## Usage 
+
+### In a Bit env
+``` js
+import { tailwindConfigPath } from '@learn-bit-react/ui-library-wrappers.tailwind.configs.tailwind-config';
+
+const { 
+    previewConfigTransformer: twPreviewTransformer, 
+    devServerConfigTransformer: twDevServerTransformer 
+} = UseTailwindTransformer(tailwindConfigPath);
+```
+
+See the `env-with-tailwind` env in this scope for an example of how this is done.
+
+
+### In any tailwind-ready app
+
+You can use, and compose upon, the tailwind config in any app by adding the following to the tailwind.config.js file in your app:
+
+```js
+// tailwind.config.js
+import { tailwindConfig } from '@learn-bit-react/ui-library-wrappers.tailwind.configs.tailwind-config';
+
+module.exports = {
+  ...tailwindConfig
+}
+```
