@@ -1,9 +1,9 @@
 import { MainRuntime } from '@teambit/cli';
 import { ReactAspect, ReactMain, UseWebpackModifiers } from '@teambit/react';
 import { EnvsAspect, EnvsMain } from '@teambit/envs';
-import { EnvWithTailwindAspect } from './env-with-tailwind.aspect';
-import { UseTailwindTransformer } from '@learn-bit-react/ui-library-wrappers.tailwind.configs.transformers';
+import { UseTailwindTransformer } from '@bit-foundations/styling.tailwind.webpack-transformer';
 import { tailwindConfigPath } from '@learn-bit-react/ui-library-wrappers.tailwind.configs.tailwind-config';
+import { EnvWithTailwindAspect } from './env-with-tailwind.aspect';
 
 
 export class EnvWithTailwindMain {
