@@ -39,6 +39,8 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
+        "@bit-foundations/styling.tailwind.webpack-transformer": "0.0.1",
+        "@learn-bit-react/ui-library-wrappers.tailwind.environments.env-with-tailwind": "0.0.2",
         "@teambit/webpack.modules.style-regexps": "0.0.118",
         "@testing-library/react": "11.2.6",
         "autoprefixer": "10.2.5",
@@ -46,7 +48,10 @@
         "postcss-loader": "5.2.0",
         "tailwindcss": "2.2.19"
       },
-      "peerDependencies": {}
+      "peerDependencies": {
+        "react-dom": "^16.8.0 || ^17.0.0", 
+        "react": "^16.8.0 || ^17.0.0"  
+      }
     }
   },
   /**
@@ -61,7 +66,10 @@
      * "*" is a special rule which applied on all components in the workspace.
      **/
     "ui": {
-      "learn-bit-react.ui-library-wrappers/tailwind/environments/env-with-tailwind":{}
+      "learn-bit-react.ui-library-wrappers/tailwind/environments/env-with-tailwind": {}
+    },
+    "environments": {
+      "teambit.harmony/aspect": {}
     }
   }
 }
