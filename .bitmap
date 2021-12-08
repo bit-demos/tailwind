@@ -23,13 +23,13 @@
     },
     "tailwind/environments/env-with-tailwind": {
         "scope": "learn-bit-react.ui-library-wrappers",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "mainFile": "index.ts",
         "rootDir": "environments/env-with-tailwind"
     },
     "tailwind/ui/tw-button": {
         "scope": "learn-bit-react.ui-library-wrappers",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "mainFile": "index.ts",
         "rootDir": "ui/tw-button"
     },
