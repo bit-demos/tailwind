@@ -1,5 +1,5 @@
 import { MainRuntime } from '@teambit/cli';
-import { ReactAspect, ReactMain, UseWebpackModifiers } from '@teambit/react';
+import { ReactAspect, ReactMain } from '@teambit/react';
 import { EnvsAspect, EnvsMain } from '@teambit/envs';
 import { UseTailwindTransformer } from '@bit-foundations/styling.tailwind.webpack-transformer';
 import { tailwindConfigPath } from '@learn-bit-react/ui-library-wrappers.tailwind.configs.tailwind-config';
