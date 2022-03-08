@@ -39,8 +39,7 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
-        "@bit-foundations/styling.tailwind.webpack-transformer": "0.0.1",
-        "@learn-bit-react/ui-library-wrappers.tailwind.environments.env-with-tailwind": "0.0.2",
+        "@bit-foundations/styling.tailwind.webpack-transformer": "0.0.6",
         "@teambit/webpack.modules.style-regexps": "0.0.118",
         "@testing-library/react": "11.2.6",
         "autoprefixer": "10.2.5",
@@ -49,8 +48,8 @@
         "tailwindcss": "2.2.19"
       },
       "peerDependencies": {
-        "react-dom": "^16.8.0 || ^17.0.0", 
-        "react": "^16.8.0 || ^17.0.0"  
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
       }
     }
   },
@@ -69,7 +68,7 @@
       "learn-bit-react.ui-library-wrappers/tailwind/environments/env-with-tailwind": {}
     },
     "environments": {
-      "teambit.harmony/aspect": {}
+      "teambit.envs/env": {}
     }
   }
 }
