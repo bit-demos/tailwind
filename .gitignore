@@ -1,4 +1,4 @@
 node_modules
 .history
-
 public
+.DS_store
