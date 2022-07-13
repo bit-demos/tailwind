@@ -1,45 +1,81 @@
+import { WebpackConfigTransformer, WebpackConfigMutator } from "@teambit/webpack";
+import { inspect } from "util";
+import { JSONPath } from "jsonpath-plus";
+import tailwindcssPlugin from "tailwindcss";
 
-  import { WebpackConfigTransformer, WebpackConfigMutator, WebpackConfigTransformContext } from '@teambit/webpack';
+export type TailwindTransformersType = {
+    previewConfigTransformer: WebpackConfigTransformer,
+    devServerConfigTransformer: WebpackConfigTransformer
+}
 
-  /**
-   * Transformation to apply for both preview and dev server
-   * @param config
-   * @param _context
-   */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function commonTransformation(config: WebpackConfigMutator, _context: WebpackConfigTransformContext) {
-    // Merge config with the webpack.config.js file if you choose to import a module export format config.
-    // config.merge([webpackConfig]);
-    // config.addAliases({});
-    // config.addModuleRule(youRuleHere);
+type PostcssOptions = { plugins?: any[] };
+
+export function UseTailwindTransformer(tailwindConfigPath: string): TailwindTransformersType {
+
+  function addTailwindConfig(config: WebpackConfigMutator): WebpackConfigMutator {
+    
+    const postcssLoaders = JSONPath<any[]>({
+        json: config.raw,
+        path: "$.module.rules..[?(@ && @.loader && @.loader.includes('postcss-loader'))]",
+    });
+    const postcssOptions = JSONPath<any[]>({
+        json: postcssLoaders,
+        path: "$..postcssOptions",
+    });
+    
+    validatePostcss(postcssLoaders, postcssOptions);
+
+    postcssOptions.forEach(options => {
+      validateOnePostCssOptions(options);
+      if (!options.plugins) options.plugins = [];
+      const plugin = tailwindcssPlugin(tailwindConfigPath);
+      options.plugins.unshift(plugin);
+    });
     return config;
   }
 
-  /**
-   * Transformation for the preview only
-   * @param config
-   * @param context
-   * @returns
-   */
-  export const previewConfigTransformer: WebpackConfigTransformer = (
-    config: WebpackConfigMutator,
-    context: WebpackConfigTransformContext
+  const previewConfig: WebpackConfigTransformer = (
+    config: WebpackConfigMutator
   ) => {
-    const newConfig = commonTransformation(config, context);
-    return newConfig;
+    return addTailwindConfig(config);
+  };
+  
+  const devServerConfig: WebpackConfigTransformer = (
+    config: WebpackConfigMutator
+  ) => {
+    return addTailwindConfig(config);
   };
 
-  /**
-   * Transformation for the dev server only
-   * @param config
-   * @param context
-   * @returns
-   */
-  export const devServerConfigTransformer: WebpackConfigTransformer = (
-    config: WebpackConfigMutator,
-    context: WebpackConfigTransformContext
-  ) => {
-    const newConfig = commonTransformation(config, context);
-    return newConfig;
-  };
+  return {
+      previewConfigTransformer: previewConfig,
+      devServerConfigTransformer: devServerConfig
+  }
+}
 
+function validatePostcss(loaders: any[], options: any[]){
+  if (loaders.length > options.length) {
+    throw new Error(
+      `tailwind-bit env: failed to add tailwind to all postcss options.` +
+      ` Found ${loaders.length} postcss loaders, but only ${options.length} postcss options.` +
+      ` This probably means the webpack configuration of Bit itself has changed!`
+    );
+  }
+  if (options.length < 1)
+    throw new Error(
+      `tailwind-bit env: failed to add tailwind postcss options - found no postcss options or loaders` +
+      ` This probably means the webpack configuration of Bit itself has changed!`
+    );
+}
+
+function isPostcssOptions(obj: any): obj is PostcssOptions {
+  return !!obj && (obj.plugins === undefined || Array.isArray(obj.plugins));
+}
+
+function validateOnePostCssOptions(options: any) {
+  if (!isPostcssOptions(options)) {
+    const stringified = inspect(options, undefined, 5);
+    throw new Error(
+        `tailwind-bit env: failed to add tailwind plugin because this postcss options object is malformed: ${stringified}`
+    );
+}
+}

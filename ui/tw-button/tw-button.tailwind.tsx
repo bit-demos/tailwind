@@ -10,7 +10,7 @@ export type TwButtonProps = {
 
 export function TwButton({ text, className }: TwButtonProps) {
   return (
-    <button className={className}>
+    <button className={`${className} text-white`}>
       {text}
     </button>
   );

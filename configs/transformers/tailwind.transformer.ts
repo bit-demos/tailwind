@@ -51,10 +51,6 @@ export function UseTailwindTransformer(tailwindConfigPath: string): TailwindTran
     }
 }
 
-
-
-
-
 function findCssRuleByCssNoModuleRegexp(rules: Array<any> = []) {
   return rules.find(
     (rule) => rule.test.toString() === stylesRegexps.cssNoModulesRegex.toString()
