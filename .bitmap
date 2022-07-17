@@ -13,7 +13,7 @@
         "scope": "learn-bit-react.ui-library-wrappers",
         "version": "0.0.4",
         "mainFile": "index.ts",
-        "rootDir": "tailwind/configs/tailwind-config"
+        "rootDir": "configs/tailwind-config"
     },
     "tailwind/configs/transformers": {
         "scope": "learn-bit-react.ui-library-wrappers",
