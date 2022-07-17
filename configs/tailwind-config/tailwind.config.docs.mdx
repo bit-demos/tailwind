@@ -10,6 +10,9 @@ This Tailwind config component contains both tailwind.config.js and style.css fi
 These configs can then be used in conjunction with a bit environment, for development of tailwind-styled components using bit's full feature set, or as a standalone - and standardised - configuration to be 
 used in app-level tailwind configs across the organisation.
 
+Indeed it is intended to be used for both - with your bit components therefore using the same config as you would in your app and fully reflecting how your tailwind styles will render
+when consumed. You can of course use a different tailwind config in your apps depending on the look-and-feel you want where you use your components.
+
 ## Configuring Tailwind For Bit
 
 This config contains a basic configuration for using tailwind3 with Bit. Specifically, as opposed to a standard tailwind config, here we are trying to produce
@@ -25,9 +28,10 @@ You can of course define your own capture patterns for telling tailwind where to
 
 To configure Tailwind for a Bit env, you must apply a config to the env's postCss webpack config, which will run the Tailwind post-processor on components using that env.
 
-This can be done via the `transformers` component in this scope, which takes in a path to a tailwind.config.js file and implements the required webpack transform to add Tailwind. 
+This can be done via this [`transformers` component](https://bit.cloud/bit-foundations/styling/tailwind/webpack-transformer), which takes in a path to a tailwind.config.js file 
+and implements the required webpack transform to add Tailwind with postCss. 
 
-After configuring the tailwind config, you then just need to import the styles.css file from this component into the env's `preview.runtime` file, like you would any tailwind-ready app, 
+After configuring the tailwind config, you then just need to import the styles.css file from this component into the env's `preview.runtime` file, like you would to any tailwind-ready app, 
 in order to make the required tailwind styles available to components using that env. 
 
 ## Usage 
