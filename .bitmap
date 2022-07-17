@@ -9,6 +9,12 @@
  */
 
 {
+    "tailwind/configs/tailwind-config": {
+        "scope": "learn-bit-react.ui-library-wrappers",
+        "version": "0.0.4",
+        "mainFile": "index.ts",
+        "rootDir": "tailwind/configs/tailwind-config"
+    },
     "tailwind/configs/transformers": {
         "scope": "learn-bit-react.ui-library-wrappers",
         "version": "0.0.3",
@@ -17,13 +23,13 @@
     },
     "tailwind/environments/env-with-tailwind": {
         "scope": "learn-bit-react.ui-library-wrappers",
-        "version": "3.1.6",
+        "version": "3.1.7",
         "mainFile": "index.ts",
         "rootDir": "environments/env-with-tailwind"
     },
     "tailwind/ui/tw-button": {
         "scope": "learn-bit-react.ui-library-wrappers",
-        "version": "0.0.14",
+        "version": "0.0.15",
         "mainFile": "index.ts",
         "rootDir": "ui/tw-button"
     },
